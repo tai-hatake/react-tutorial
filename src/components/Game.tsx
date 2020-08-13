@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import { History, ISquare } from "../domain/entity";
 import { calculateWinner } from "../domain/services";
-import Board from "../components/Board";
+import Board from "./Board";
 
 const Game = () => {
   const [history, setHistory] = useState<History>([
