@@ -8,31 +8,19 @@ interface BoardProps {
 }
 
 const Board: React.SFC<BoardProps> = ({ squares, onClick }) => {
-  const renderSquare = (i: number) => {
-    return (
-      <Square
-        value={squares[i]}
-        onClick={() => onClick(i)}
-      />
-    );
-  }
+  // 2次元配列 [[0, 1, 2], [3, 4, 5], [6, 7, 8]]
+  const square = Array(3).fill(0).map((_, i) => Array(3).fill(i).map((_, j) => i * 3 + j))
   return (
-    <div>
-      <div className="board-row">
-        {renderSquare(0)}
-        {renderSquare(1)}
-        {renderSquare(2)}
-      </div>
-      <div className="board-row">
-        {renderSquare(3)}
-        {renderSquare(4)}
-        {renderSquare(5)}
-      </div>
-      <div className="board-row">
-        {renderSquare(6)}
-        {renderSquare(7)}
-        {renderSquare(8)}
-      </div>
+    <div className="board">
+      {
+        square.map((row, i) => (
+          <div className="board-row">
+            {row.map((j, _) => (
+              <Square key={j} value={squares[j]} onClick={() => onClick(j)} />
+            ))}
+          </div>
+        ))
+      }
     </div>
   );
 };
